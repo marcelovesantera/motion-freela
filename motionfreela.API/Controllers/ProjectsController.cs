@@ -43,11 +43,5 @@ namespace motionfreela.API.Controllers
 
             return NoContent();
         }
-
-        [HttpPut("{id}/login")]
-        public IActionResult Login(int id, [FromBody] LoginModel login)
-        {
-            return NoContent();
-        }
     }
 }
