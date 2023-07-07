@@ -43,5 +43,17 @@ namespace motionfreela.API.Controllers
 
             return NoContent();
         }
+
+        [HttpPut("{id}/start")]
+        public IActionResult StartProject(int id)
+        {
+            return NoContent();
+        }
+
+        [HttpPut("{id}/finish")]
+        public IActionResult FinishProject(int id)
+        {
+            return NoContent();
+        }
     }
 }
