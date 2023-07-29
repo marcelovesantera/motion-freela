@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace motionfreela.Core.Exceptions
 {
-    internal class ProjectAlreadyStartedException
+    public class ProjectAlreadyStartedException : Exception
     {
+        public ProjectAlreadyStartedException() : base("Project was already started.")
+        {
+            
+        }
     }
 }

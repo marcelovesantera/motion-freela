@@ -2,7 +2,7 @@
 
 namespace motionfreela.Core.Entities
 {
-    internal class Project : BaseEntity
+    public class Project : BaseEntity
     {
         public Project(int ownerId, string title, string description)
         {

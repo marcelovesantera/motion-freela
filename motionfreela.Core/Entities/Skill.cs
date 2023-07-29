@@ -1,6 +1,6 @@
 ﻿namespace motionfreela.Core.Entities
 {
-    internal class Skill : BaseEntity
+    public class Skill : BaseEntity
     {
         public Skill(string skill)
         {

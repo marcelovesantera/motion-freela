@@ -1,6 +1,6 @@
 ﻿namespace motionfreela.Core.Entities
 {
-    internal class User : BaseEntity
+    public class User : BaseEntity
     {
         public User(string name, string lastName, string userName, string email, string password)
         {
