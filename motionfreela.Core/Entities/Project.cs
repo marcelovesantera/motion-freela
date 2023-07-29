@@ -1,4 +1,6 @@
-﻿namespace motionfreela.Core.Entities
+﻿using motionfreela.Core.Enums;
+
+namespace motionfreela.Core.Entities
 {
     internal class Project : BaseEntity
     {
@@ -9,6 +11,7 @@
             Description = description;
             Freelancers = new List<User>();
             CreatedAt = DateTime.Now;
+            Status = ProjectStatusEnum.Created;
         }
 
         public int OwnerId { get; private set; }
@@ -21,6 +24,6 @@
         public DateTime FinisehdAt { get; private set; }
         public DateTime CreatedAt { get; private set; }
         public DateTime UpdatedAt { get; private set; }
-        public ProjectStatusEnum ProjectStatus { get; set; }
+        public ProjectStatusEnum Status { get; set; }
     }
 }
