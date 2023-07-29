@@ -9,7 +9,7 @@
         public string Email { get; set; }
         public string Password { get; set; }
         public string? RoleTitle { get; set; }
-        public string? Description { get; set; }
+        public string? About { get; set; }
         public string? PersonalSite { get; set; }
         public string? Linkedin { get; set; }
         public string? Behance { get; set; }
