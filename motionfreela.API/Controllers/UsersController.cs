@@ -7,7 +7,7 @@ namespace motionfreela.API.Controllers
     public class UsersController : ControllerBase
     {
         [HttpGet]
-        public IActionResult GetUsers()
+        public IActionResult GetUsers(string query)
         {
             return Ok();
         }
@@ -29,7 +29,7 @@ namespace motionfreela.API.Controllers
         }
 
         [HttpPut("{id}")]
-        public IActionResult UpdateUser(int id, [FromBody] UpdateUserModel updateUser)
+        public IActionResult UpdateUser([FromBody] UpdateUserModel updateUser)
         {
             // return BadRequest();
 
@@ -45,7 +45,7 @@ namespace motionfreela.API.Controllers
         }
 
         [HttpPut("{id}/login")]
-        public IActionResult Login(int id, [FromBody] LoginModel login)
+        public IActionResult Login([FromBody] LoginModel login)
         {
             return NoContent();
         }
