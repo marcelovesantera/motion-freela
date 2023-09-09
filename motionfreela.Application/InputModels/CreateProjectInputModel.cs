@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace motionfreela.Application.InputModels
+﻿namespace motionfreela.Application.InputModels
 {
-    public class CreateProjectInputModel
+    public class CreateProjectInputModel : BaseInputModel
     {
+        public int OwnerId { get; private set; }
+        public string Title { get; private set; }
+        public string Description { get; set; }
     }
 }

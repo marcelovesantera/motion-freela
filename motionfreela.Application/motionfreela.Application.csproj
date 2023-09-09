@@ -6,4 +6,9 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\motionfreela.Core\motionfreela.Core.csproj" />
+    <ProjectReference Include="..\motionfreela.Infrastructure\motionfreela.Infrastructure.csproj" />
+  </ItemGroup>
+
 </Project>
