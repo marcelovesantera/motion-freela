@@ -8,7 +8,7 @@ namespace motionfreela.Application.InputModels
 {
     public class UpdateProjectInputModel : BaseInputModel
     {
-        public string Title { get; private set; }
+        public string Title { get; set; }
         public string Description { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime DeadlineDate { get; set; }

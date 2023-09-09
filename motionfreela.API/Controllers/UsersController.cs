@@ -1,51 +1,79 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using motionfreela.API.Models;
+using motionfreela.Application.InputModels;
+using motionfreela.Application.Services.Interfaces;
 
 namespace motionfreela.API.Controllers
 {
     [Route("api/users")]
     public class UsersController : ControllerBase
     {
+        private readonly IUserService _userService;
+
+        public UsersController(IUserService userService)
+        {
+            _userService = userService;
+        }
+
         [HttpGet]
         public IActionResult GetUsers(string query)
         {
-            return Ok();
+            var users = _userService.GetUsers(query);
+
+            return Ok(users);
         }
 
         [HttpGet("{id}")]
         public IActionResult GetUserById(int id)
         {
-            // return NotFound();
+            var user = _userService.GetUserById(id);
 
-            return Ok();
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(user);
         }
 
         [HttpPost]
-        public IActionResult CreateUser([FromBody] CreateUserModel createUser)
+        public IActionResult CreateUser([FromBody] CreateUserInputModel createUser)
         {
-            // return BadRequest();
+            var userId = _userService.CreateUser(createUser);
 
-            return CreatedAtAction(nameof(CreateUser), new { id = createUser.Id }, createUser);
+            return CreatedAtAction(nameof(GetUserById), new { id = userId }, createUser);
         }
 
         [HttpPut("{id}")]
-        public IActionResult UpdateUser([FromBody] UpdateUserModel updateUser)
+        public IActionResult UpdateUser(int id, [FromBody] UpdateUserViewModel updateUser)
         {
-            // return BadRequest();
+            if(updateUser.About.Length > 200)
+            {
+                return BadRequest();
+            }
 
-            return Ok();
+            _userService.UpdateUser(updateUser);
+
+            return NoContent();
         }
 
         [HttpDelete("{id}")]
         public IActionResult DeleteUser(int id)
         {
-            // return NotFound();
+            var userId = GetUserById(id);
+
+            if (userId == null)
+            {
+                return NotFound();
+            }
+
+            _userService.DeleteUser(id);
 
             return NoContent();
         }
 
         [HttpPut("{id}/login")]
-        public IActionResult Login([FromBody] LoginModel login)
+        public IActionResult Login([FromBody] LoginInputModel login)
         {
             return NoContent();
         }
