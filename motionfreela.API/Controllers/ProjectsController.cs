@@ -14,7 +14,7 @@ namespace motionfreela.API.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetProjects()
+        public IActionResult GetProjects(string query)
         {
             return Ok();
         }
@@ -36,7 +36,7 @@ namespace motionfreela.API.Controllers
         }
 
         [HttpPut]
-        public IActionResult UpdateProject(int id, [FromBody] UpdateProjectModel updateProject)
+        public IActionResult UpdateProject([FromBody] UpdateProjectModel updateProject)
         {
             // return BadRequest();
 

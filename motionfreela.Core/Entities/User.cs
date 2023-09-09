@@ -9,8 +9,6 @@
             UserName = userName;
             Email = email;
             Password = password;
-            Skills = new List<Skill>();
-            Projects = new List<Project>();
             CreatedAt = DateTime.Now;
             IsActive = true;
         }
@@ -20,11 +18,29 @@
         public string UserName { get; private set; }
         public string Email { get; private set; }
         public string Password { get; private set; }
-        public string RoleTitle { get; private set; }
-        public string About { get; private set; }
-        public List<Skill> Skills { get; private set; }
-        public List<Project> Projects { get; private set; }
+        public string? RoleTitle { get; private set; }
+        public string? About { get; private set; }
         public DateTime CreatedAt { get; private set; }
         public DateTime UpdatedAt { get; private set; }
+
+        public void Deactivate()
+        {
+            if ((bool)IsActive)
+            {
+                IsActive = false;
+                UpdatedAt = DateTime.Now;
+            }
+        }
+
+        public void Update(string name, string lastname, string username, string email, string roletitle, string about)
+        {
+            Name = name;
+            LastName = lastname;
+            UserName = username;
+            Email = email;
+            RoleTitle = roletitle;
+            About = about;
+            UpdatedAt = DateTime.Now;
+        }
     }
 }
