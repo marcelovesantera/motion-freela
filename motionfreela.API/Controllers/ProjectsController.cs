@@ -1,52 +1,71 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using motionfreela.API.Models;
+using motionfreela.Application.InputModels;
+using motionfreela.Application.Services.Interfaces;
 
 namespace motionfreela.API.Controllers
 {
     [Route("api/projects")]
     public class ProjectsController : ControllerBase
     {
-        private readonly OpeningTimeOption _option;
-        public ProjectsController(IOptions<OpeningTimeOption> option)
+        private readonly IProjectService _projectService;
+        public ProjectsController(IProjectService projectService)
         {
-            _option = option.Value;
+            _projectService = projectService;
         }
 
         [HttpGet]
         public IActionResult GetProjects(string query)
         {
-            return Ok();
+            var projects = _projectService.GetProjects(query);
+
+            return Ok(projects);
         }
 
         [HttpGet("{id}")]
         public IActionResult GetProjectById(int id)
         {
-            // return NotFound();
+            var project = _projectService.GetProjectById(id);
 
-            return Ok();
+            if(project == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(project);
         }
 
         [HttpPost]
-        public IActionResult CreateProject([FromBody] CreateProjectModel createProject)
+        public IActionResult CreateProject([FromBody] CreateProjectInputModel createProject)
         {
-            // return BadRequest();
+            if(createProject.Description.Length > 200)
+            {
+                return BadRequest();
+            }
+            
+            var projectId = _projectService.CreateProject(createProject);
 
-            return CreatedAtAction(nameof(GetProjectById), new { id = createProject.Id }, createProject);
+            return CreatedAtAction(nameof(GetProjectById), new { id = projectId }, createProject);
         }
 
-        [HttpPut]
-        public IActionResult UpdateProject([FromBody] UpdateProjectModel updateProject)
+        [HttpPut("{id}")]
+        public IActionResult UpdateProject(int id, [FromBody] UpdateProjectInputModel updateProject)
         {
-            // return BadRequest();
+            if (updateProject.Description.Length > 200)
+            {
+                return BadRequest();
+            }
 
-            return Ok();
+            _projectService.UpdateProject(updateProject);
+
+            return NoContent();
         }
 
         [HttpDelete("{id}")]
         public IActionResult DeleteProject(int id)
         {
-            // return NotFound();
+            _projectService.DeleteProject(id);
 
             return NoContent();
         }
@@ -54,12 +73,16 @@ namespace motionfreela.API.Controllers
         [HttpPut("{id}/start")]
         public IActionResult StartProject(int id)
         {
+            _projectService.StartProject(id);
+
             return NoContent();
         }
 
         [HttpPut("{id}/finish")]
         public IActionResult FinishProject(int id)
         {
+            _projectService.FinishProject(id);
+
             return NoContent();
         }
     }

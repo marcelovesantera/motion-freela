@@ -12,11 +12,11 @@
             About = about;
         }
 
-        public string Name { get; private set; }
-        public string LastName { get; private set; }
-        public string UserName { get; private set; }
-        public string Email { get; private set; }
-        public string RoleTitle { get; private set; }
-        public string About { get; private set; }
+        public string Name { get; set; }
+        public string LastName { get; set; }
+        public string UserName { get; set; }
+        public string Email { get; set; }
+        public string RoleTitle { get; set; }
+        public string About { get; set; }
     }
 }
